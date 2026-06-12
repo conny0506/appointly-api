@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Appointly.Api/Appointly.Api.csproj" />
+    <Project Path="src/Appointly.Domain/Appointly.Domain.csproj" />
+    <Project Path="src/Appointly.Infrastructure/Appointly.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Appointly.Tests/Appointly.Tests.csproj" />
+  </Folder>
+</Solution>
