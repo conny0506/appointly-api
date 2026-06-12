@@ -1,14 +1,14 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Appointly.Api.Contracts;
 
 public record BookAppointmentRequest(
-    [property: Required] Guid ProviderId,
-    [property: Required] Guid ServiceId,
-    [property: Required] DateTimeOffset StartsAt,
-    [property: MaxLength(1024)] string? Notes);
+    [Required] Guid ProviderId,
+    [Required] Guid ServiceId,
+    [Required] DateTimeOffset StartsAt,
+    [MaxLength(1024)] string? Notes);
 
-public record CancelAppointmentRequest([property: MaxLength(512)] string? Reason);
+public record CancelAppointmentRequest([MaxLength(512)] string? Reason);
 
 public record AppointmentResponse(
     Guid Id,

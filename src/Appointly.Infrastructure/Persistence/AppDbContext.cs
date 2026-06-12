@@ -1,5 +1,6 @@
 using Appointly.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Appointly.Infrastructure.Persistence;
 
@@ -68,5 +69,21 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             // Conflict checks query by provider and time range.
             b.HasIndex(a => new { a.ProviderId, a.StartsAt });
         });
+
+        // SQLite (used by integration tests) cannot translate DateTimeOffset
+        // comparisons; storing them as ticks keeps range queries working.
+        if (Database.ProviderName == "Microsoft.EntityFrameworkCore.Sqlite")
+        {
+            var converter = new DateTimeOffsetToBinaryConverter();
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                foreach (var property in entityType.GetProperties()
+                    .Where(p => p.ClrType == typeof(DateTimeOffset)
+                        || p.ClrType == typeof(DateTimeOffset?)))
+                {
+                    property.SetValueConverter(converter);
+                }
+            }
+        }
     }
 }

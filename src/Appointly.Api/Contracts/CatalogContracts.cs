@@ -1,25 +1,25 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Appointly.Api.Contracts;
 
 public record ServiceRequest(
-    [property: Required, MaxLength(128)] string Name,
-    [property: MaxLength(1024)] string? Description,
-    [property: Range(5, 480)] int DurationMinutes,
-    [property: Range(0, 100_000)] decimal Price,
+    [Required, MaxLength(128)] string Name,
+    [MaxLength(1024)] string? Description,
+    [Range(5, 480)] int DurationMinutes,
+    [Range(0, 100_000)] decimal Price,
     bool Active = true);
 
 public record ServiceResponse(
     Guid Id, string Name, string? Description, int DurationMinutes, decimal Price, bool Active);
 
 public record WorkingHoursRequest(
-    [property: Required] DayOfWeek DayOfWeek,
-    [property: Required] TimeOnly StartTime,
-    [property: Required] TimeOnly EndTime);
+    [Required] DayOfWeek DayOfWeek,
+    [Required] TimeOnly StartTime,
+    [Required] TimeOnly EndTime);
 
 public record ProviderRequest(
-    [property: Required, MaxLength(128)] string FullName,
-    [property: MaxLength(128)] string? Title,
+    [Required, MaxLength(128)] string FullName,
+    [MaxLength(128)] string? Title,
     bool Active = true);
 
 public record ProviderResponse(
