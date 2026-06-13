@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
-COPY Appointly.sln dotnet-tools.json ./
+COPY Appointly.slnx dotnet-tools.json ./
 COPY src/Appointly.Domain/Appointly.Domain.csproj src/Appointly.Domain/
 COPY src/Appointly.Infrastructure/Appointly.Infrastructure.csproj src/Appointly.Infrastructure/
 COPY src/Appointly.Api/Appointly.Api.csproj src/Appointly.Api/
